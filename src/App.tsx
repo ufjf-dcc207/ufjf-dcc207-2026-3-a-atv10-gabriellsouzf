@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Garrafa from "./Garrafa";
 import "./App.css";
@@ -14,7 +13,6 @@ export default function App() {
     const [selecionada, setSelecionada] = useState(-1);
 
     function clicar(i: number) {
-
         if (selecionada === -1) {
             setSelecionada(i);
         }
@@ -23,10 +21,10 @@ export default function App() {
         }
         else {
             const novas = garrafas.map(g => [...g]);
-            const bola = novas[selecionada].pop();
 
-            if (bola) {
-                novas[i].push(bola);
+            if (novas[selecionada].length > 0) {
+                const bola = novas[selecionada].pop();
+                novas[i].push(bola!);
             }
 
             setGarrafas(novas);
@@ -51,4 +49,5 @@ export default function App() {
         </div>
     );
 }
+
 

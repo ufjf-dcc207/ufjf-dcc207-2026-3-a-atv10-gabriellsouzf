@@ -1,3 +1,4 @@
+
 .garrafas {
     display: flex;
     gap: 20px;
@@ -22,4 +23,8 @@
 
 .azul {
     background-color: blue;
+}
+
+.selecionada {
+    border-color: green;
 }
