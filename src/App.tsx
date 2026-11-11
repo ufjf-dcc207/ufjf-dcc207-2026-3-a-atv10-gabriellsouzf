@@ -4,30 +4,33 @@ import "./App.css";
 
 export default function App() {
 
-    const [garrafas, setGarrafas] = useState<string[][]>([
+    const estadoInicial = [
         ["vermelho", "azul", "vermelho"],
         ["azul", "vermelho", "azul"],
         []
-    ]);
+    ];
 
+    const [garrafas, setGarrafas] = useState(estadoInicial);
     const [selecionada, setSelecionada] = useState(-1);
 
     function clicar(i: number) {
+
         if (selecionada === -1) {
             setSelecionada(i);
         }
-        else if (selecionada === i) {
-            setSelecionada(-1);
-        }
         else {
-            const novas = garrafas.map(g => [...g]);
+            if (selecionada !== i) {
+                const novas = garrafas.map(g => [...g]);
 
-            if (novas[selecionada].length > 0) {
-                const bola = novas[selecionada].pop();
-                novas[i].push(bola!);
+                const origem = novas[selecionada];
+                const destino = novas[i];
+
+                if (origem.length > 0) {
+                    const bolinha = origem.pop();
+                    destino.push(bolinha!);
+                }
+                setGarrafas(novas);
             }
-
-            setGarrafas(novas);
             setSelecionada(-1);
         }
     }
@@ -49,5 +52,3 @@ export default function App() {
         </div>
     );
 }
-
-
